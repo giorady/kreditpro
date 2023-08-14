@@ -1,0 +1,51 @@
+<template>
+    <div class="container">
+        <br />
+        <br />
+
+        <h1>Login to Kreditpro</h1>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6">
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" v-model="email" aria-describedby="emailHelp"
+                            placeholder="email@email.com" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" v-model="password" placeholder="Enter password" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: "login",
+    data() {
+        return {
+            email: "",
+            password: ""
+        }
+    },
+    methods: {
+        login: function(){
+            console.log("Email:" + this.email)
+            console.log("Password:" + this.password)
+        }
+    }
+};
+</script>
+
+<style scoped></style>
