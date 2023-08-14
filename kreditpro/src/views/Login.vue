@@ -11,7 +11,7 @@
             <div class="col-md-3"></div>
 
             <div class="col-md-6">
-                <form>
+                <form @submit.prevent="handleSubmit">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
                         <input type="email" class="form-control" id="email" v-model="email" aria-describedby="emailHelp"
@@ -32,15 +32,9 @@
 
 <script>
 export default {
-    name: "login",
-    data() {
-        return {
-            email: "",
-            password: ""
-        }
-    },
+    name: "Login",
     methods: {
-        login: function(){
+        handleSubmit(){
             console.log("Email:" + this.email)
             console.log("Password:" + this.password)
         }
