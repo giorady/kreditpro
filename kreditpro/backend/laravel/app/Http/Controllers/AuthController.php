@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +45,7 @@ class AuthController extends Controller
         return Auth::user();
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
         try {
             $user = User::create([
