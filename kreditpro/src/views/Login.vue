@@ -33,10 +33,32 @@
 <script>
 export default {
     name: "Login",
+
+    data() {
+        return {
+            email: "",
+            password: "",
+        }
+    },
+
     methods: {
         handleSubmit(){
-            console.log("Email:" + this.email)
-            console.log("Password:" + this.password)
+            const data = {
+                email: this.email,
+                password: this.password,
+            };
+
+            axios.post("http://localhost:8080/login", data)
+                .then(
+                    res => {
+                        console.log(res)
+                    }
+                ).catch(
+                    err => {
+                        console.log(err)
+                    }
+                )
+
         }
     }
 };
