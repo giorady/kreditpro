@@ -21,10 +21,11 @@ Route::match(['options'], 'https://localhost:8000', function () {
         ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 });
 
-Route::get('hello', 'HelloController@hello');
+
 Route::post('login', 'AuthController@login');
 Route::post('register', 'Authcontroller@register');
-Route::get('register', 'Authcontroller@register');
+Route::post('verify-captcha', 'CaptchaController@verifyCaptcha');
 
+Route::get('hello', 'HelloController@hello');
 Route::get('user', 'AuthController@user')->middleware('auth:api');
 

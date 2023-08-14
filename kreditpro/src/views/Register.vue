@@ -40,6 +40,15 @@
                       <label for="KTP" class="form-label">KTP:</label>
                       <input type="file" class="form-control" id="selectedKtp" ref="selectedKtp" @change="handleFileUpload">
                   </div>
+                  <div class="mb-3">
+                    <!--
+                    /*
+                    <vue-recaptcha
+                        ref="recaptcha"
+                        @verify="onCaptchaVerified"
+                        sitekey="6LeJV6YnAAAAAEMMvWyFG1VRbickqZrtpMjrkToC"
+                    ></vue-recaptcha> -->
+                  </div>
                     <button type="submit" class="btn btn-primary">Register</button>
                 </form>
             </div>
@@ -52,10 +61,15 @@
 
 <script>
 import axios from "axios"
+//import VueReCaptcha from 'vue-recaptcha';
 axios.defaults.withCredentials = true;
 
 export default {
     name: "Register",
+
+   /* components: {
+      VueReCaptcha,
+    },*/
 
     data() {
         return {
@@ -66,6 +80,7 @@ export default {
             password: "",
             password_confirm: "",
             selectedKtp: null,
+            //captchaResponse: null,
         }
     },
 
@@ -73,7 +88,16 @@ export default {
       handleFileUpload(e){
         this.selectedKtp = e.target.files[0];
       },
+     /* onCaptchaVerified(response) {
+        // Captcha verification successful, save the response for later submission
+        this.captchaResponse = response;
+      }, */
         handleSubmit(){
+          // Check if the captcha is verified
+         /* if (!this.captchaResponse) {
+            console.log('Please verify the reCAPTCHA.');
+            return;
+          } */
             const data = {
                 first_name: this.first_name,
                 last_name: this.last_name,
@@ -91,28 +115,19 @@ export default {
               formData.append(key, data[key]);
             }
 
-            axios.post('http://localhost:8000/register', formData)
-                .then(
-                    res => {
-                        console.log(res)
-                    }
-                ).catch(
-                    err => {
-                        console.log(err)
-                    }
-                )
+            // Append the captcha response to the formData
+            // formData.append('captchaResponse', this.captchaResponse);
 
-            axios.get('http://localhost:8000/register', {withCredentials: true})
-                .then(
-                    res => {
+          axios.post('http://localhost:8000/register', formData)
+              .then(
+                  res => {
                       console.log(res)
-                    }
-                ).catch(
-                err => {
-                  console.log(err)
-                }
-            )
-
+                  }
+              ).catch(
+                  err => {
+                      console.log(err)
+                  }
+              )
         }
     }
 };
