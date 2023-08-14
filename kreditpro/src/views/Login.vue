@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
     name: "Login",
 
@@ -48,7 +49,7 @@ export default {
                 password: this.password,
             };
 
-            axios.post("http://localhost:8080/login", data)
+            axios.post("https://localhost:8000/login", data)
                 .then(
                     res => {
                         console.log(res)

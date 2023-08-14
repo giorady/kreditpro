@@ -14,10 +14,17 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::match(['options'], 'https://localhost:8000', function () {
+    return response('', 200)
+        ->header('Access-Control-Allow-Origin', 'https://localhost:8080')
+        ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+        ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+});
 
 Route::get('hello', 'HelloController@hello');
 Route::post('login', 'AuthController@login');
 Route::post('register', 'Authcontroller@register');
+Route::get('register', 'Authcontroller@register');
 
 Route::get('user', 'AuthController@user')->middleware('auth:api');
 

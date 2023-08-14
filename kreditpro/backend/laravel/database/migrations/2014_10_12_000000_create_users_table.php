@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('selectedKtp')->nullable();
             $table->timestamps();
         });
     }

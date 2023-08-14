@@ -48,13 +48,20 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         try {
+            $ktpPath = null;
+            if ($request->hasFile('selectedKtp')) {
+                $ktpPath = $request->file('selectedKtp')->store('KTP');
+            }
+
             $user = User::create([
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
                 'mobile' => $request->input('mobile'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
+                'selectedKtp' => $ktpPath,
             ]);
+
             return $user;
         } catch (\Exception $e) {
             return response([
